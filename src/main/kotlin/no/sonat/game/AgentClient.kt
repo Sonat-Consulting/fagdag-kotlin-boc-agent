@@ -20,20 +20,24 @@ class AgentClient(
 
     val agent = WebSocketFactory()
             .createSocket(wsUri)
+            .setPingInterval(60*1000)
+            .setPingPayloadGenerator { "PING".toByteArray() }
             .addListener(object : WebSocketAdapter() {
 
                 override fun onConnected(websocket: WebSocket, headers: MutableMap<String, MutableList<String>>) {
                     val msg = PlayerMessage(JoinRoomAction(room,name))
-                    websocket.sendText(JSON.stringify(PlayerMessage.serializer(),msg))
+                    val toSend = JSON.stringify(PlayerMessage.serializer(),msg)
+                    logger.info(toSend)
+                    websocket.sendText(toSend)
                 }
 
                 override fun onTextMessage(websocket: WebSocket, text: String) {
                     val deserialized = JSON.parse(PlayerResponseMessage.serializer(),text)
+                    logger.info("Received: $text")
 
                     val response = deserialized.response;
                     when(response) {
                         is JoinResponse -> {
-                            logger.info("$response")
                             joinAction(response)
                         }
                         is DiceRoll -> {
@@ -44,6 +48,7 @@ class AgentClient(
                                     PlayerMessage(PlacementAction(room,name,placement))
                             )
 
+                            logger.info("Sent: $placementMessage")
                             websocket.sendText(placementMessage)
                         }
                     }
@@ -56,6 +61,10 @@ class AgentClient(
 
                 override fun onConnectError(websocket: WebSocket, exception: WebSocketException?) {
                     logger.error("Websocket failure",exception)
+                }
+
+                override fun onPongFrame(websocket: WebSocket, frame: WebSocketFrame) {
+                    logger.info("Got pong ? ${frame.payload}")
                 }
             })
             .connect()
