@@ -1,4 +1,4 @@
-
+package no.sonat.game
 import kotlinx.serialization.json.JSON
 import org.junit.Test
 import kotlin.test.assertTrue

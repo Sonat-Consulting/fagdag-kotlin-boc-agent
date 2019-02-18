@@ -1,3 +1,5 @@
+package no.sonat.game
+
 import org.slf4j.LoggerFactory
 
 const val NAME = "MegaMan"

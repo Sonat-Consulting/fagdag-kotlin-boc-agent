@@ -1,3 +1,5 @@
+package no.sonat.game
+
 import com.neovisionaries.ws.client.*
 import kotlinx.serialization.json.JSON
 import org.slf4j.LoggerFactory

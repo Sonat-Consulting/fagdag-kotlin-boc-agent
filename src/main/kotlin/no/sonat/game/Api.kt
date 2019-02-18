@@ -1,3 +1,4 @@
+package no.sonat.game
 
 import kotlinx.serialization.Polymorphic
 import kotlinx.serialization.Serializable
