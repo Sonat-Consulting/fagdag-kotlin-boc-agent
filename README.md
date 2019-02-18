@@ -5,7 +5,7 @@ Battle of code, kotlin agent base
 
 The game we are playing is called Get1000.
 
-It consists of a series of 9 consecutive dice rolls.
+The game consists of a series of rounds, each with 9 consecutive dice rolls.
 
 For each roll players simultaneously place the number of eyes in a 3x3 grid.
 
