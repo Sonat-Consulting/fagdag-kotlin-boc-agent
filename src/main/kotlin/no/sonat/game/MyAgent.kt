@@ -3,7 +3,7 @@ package no.sonat.game
 import org.slf4j.LoggerFactory
 
 const val NAME = "MegaMan"
-const val ROOM = "418730"
+const val ROOM = "<ROOM_TO_JOIN>"
 const val WS_URI = "ws://localhost:8443/agent"
 
 fun main() {
