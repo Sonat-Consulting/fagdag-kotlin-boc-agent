@@ -51,6 +51,12 @@ class AgentClient(
                             logger.info("Sent: $placementMessage")
                             websocket.sendText(placementMessage)
                         }
+                        is GameEnd -> {
+                            logger.info("Game ${response.id} ended")
+                        }
+                        is GameError -> {
+                            logger.info("Game ${response.id} had error ${response.errorMsg}")
+                        }
                     }
 
                 }

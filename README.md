@@ -60,7 +60,7 @@ The winner is the first agent to 20 wins.
 Open the file MyAgent.kt
 
 Add your teams name to the _NAME_ constant.
-The _ROOM_ and _WS_URI_ constants can be ignored for now.
+The _HOST_ _ROOM_ and _WS_URI_ constants can be ignored for now.
 
 For each dice roll the function ```fun myStrategy(roll : DiceRoll) : Placement``` will be in invoked.
 

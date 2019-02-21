@@ -2,9 +2,10 @@ package no.sonat.game
 
 import org.slf4j.LoggerFactory
 
+const val HOST = "localhost"
 const val NAME = "MegaMan"
 const val ROOM = "Sonat"
-const val WS_URI = "ws://localhost:8443/agent"
+const val WS_URI = "ws://$HOST:8443/agent"
 
 fun main() {
 

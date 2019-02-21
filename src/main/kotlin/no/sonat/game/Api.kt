@@ -14,6 +14,13 @@ sealed class PlayerResponse
 data class JoinResponse(val id : String) : PlayerResponse();
 
 @Serializable
+data class GameEnd(val id : String) : PlayerResponse();
+
+@Serializable
+data class GameError(val id : String,val errorMsg : String) : PlayerResponse();
+
+
+@Serializable
 data class DiceRoll(val value: Int) : PlayerResponse();
 
 
