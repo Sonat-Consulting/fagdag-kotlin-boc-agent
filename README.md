@@ -73,6 +73,17 @@ Remember:
 
 Good Luck!
 
+### Testing
+You can test against the ```WS:$HOST:8443/test``` websocket URI.
+It will only provide feedback on the correctness in terms placements strategy
+of your algorithm. It does not warn about too slow response.
+
+
+### Playing for real
+When we play for real we shift over to the ```WS:$HOST:8443/agent``` URI.
+When we do test rounds, they will be against this URI.
+The __ROOM__ constant should be set to a value given by an admin.
+
 
 ### Useful kotlin resources
 [Data classes](https://kotlinlang.org/docs/reference/data-classes.html)
