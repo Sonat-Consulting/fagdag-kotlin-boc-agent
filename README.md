@@ -75,8 +75,8 @@ Good Luck!
 
 ### Testing
 You can test against the ```WS:$HOST:8443/test``` websocket URI.
-It will only provide feedback on the correctness in terms placements strategy
-of your algorithm. It does not warn about too slow response.
+It will only provide feedback on the correctness in terms of placements of your strategy.
+ It does not warn about too slow response.
 
 
 ### Playing for real
