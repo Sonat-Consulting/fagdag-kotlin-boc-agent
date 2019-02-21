@@ -53,9 +53,11 @@ class AgentClient(
                         }
                         is GameEnd -> {
                             logger.info("Game ${response.id} ended")
+                            websocket.disconnect()
                         }
                         is GameError -> {
                             logger.info("Game ${response.id} had error ${response.errorMsg}")
+                            websocket.disconnect()
                         }
                     }
 
