@@ -9,17 +9,60 @@ const val WS_URI = "ws://$HOST:8443/test"
 
 fun main() {
 
+    val strategy = Strategy()
+
     AgentClient(
             wsUri = WS_URI,
             room = ROOM,
             name = NAME,
-            strategy = ::myStrategy)
+            strategy = { it -> strategy.handleRoll(it) })
 }
 
 val logger = LoggerFactory.getLogger("$NAME-$ROOM")
 
-fun myStrategy(roll : DiceRoll) : Placement {
-    logger.info("Current die shows ${roll.value}")
-    //TODO save me, I will currently attempt an illegal placement after 3 moves
-    return Placement.HUNDREDS
+
+class GameState {
+    var hundreds : Int = 0
+    var tens : Int = 0
+    var ones : Int = 0
+
+    var sum : Int = 0
+
+    fun addHundred(number : Int) {
+        hundreds++
+        sum += (number * 100)
+    }
+
+    fun addTens(number : Int) {
+        tens++
+        sum += (number * 10)
+    }
+
+    fun addOnes(number : Int) {
+        ones++
+        sum += number
+    }
+}
+
+class Strategy {
+
+    val state : GameState = GameState()
+
+    fun handleRoll(roll : DiceRoll) : Placement {
+        logger.info("Current die shows ${roll.value}")
+
+        if(state.hundreds < 3) {
+            state.addHundred(roll.value)
+            return Placement.HUNDREDS
+        }
+
+        if(state.tens < 3) {
+            state.addTens(roll.value)
+            return Placement.TENS
+        }
+
+        state.addOnes(roll.value)
+        return Placement.ONES
+
+    }
 }
